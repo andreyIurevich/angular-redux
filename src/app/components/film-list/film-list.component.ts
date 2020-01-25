@@ -1,19 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Input, Output, Component, OnInit, EventEmitter, OnChanges } from '@angular/core';
+import { Film } from '../../models/film';
 
 @Component({
   selector: 'app-film-list',
   template: `
-    <p>
-      film-list works!
-    </p>
-  `,
-  styles: []
+    <div class="list">
+      <h2>{{label}}</h2>
+      <app-film-item  *ngFor="let film of films"
+         [film]="film" 
+         (select)="select.emit($event)">
+      </app-film-item>
+    </div>`,
+  styles: [`
+  .list {
+    display:flex;
+    flex-direction:column;
+  }
+  `]
 })
-export class FilmListComponent implements OnInit {
 
+export class FilmListComponent implements OnInit, OnChanges {
+  @Input() films: Film[];
+  @Input() label: string;
+  @Output() select = new EventEmitter();
+  
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
