@@ -1,4 +1,4 @@
-import { Input, Output, Component, OnInit, EventEmitter, OnChanges } from '@angular/core';
+import { Input, Output, Component, OnInit, EventEmitter } from '@angular/core';
 import { Film } from '../../models/film';
 
 @Component({
@@ -19,7 +19,7 @@ import { Film } from '../../models/film';
   `]
 })
 
-export class FilmListComponent implements OnInit, OnChanges {
+export class FilmListComponent implements OnInit {
   @Input() films: Film[];
   @Input() label: string;
   @Output() select = new EventEmitter();
